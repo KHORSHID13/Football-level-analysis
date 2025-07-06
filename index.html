@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>کارت آنالیز فوتبالی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Orbitron', sans-serif;
+      direction: rtl;
+      background: #000;
+      color: #fff;
+      padding: 20px;
+    }
+    .site-border {
+      border: 5px solid #ff003c;
+      box-shadow: 0 0 20px red;
+      border-radius: 20px;
+      padding: 10px;
+    }
+    h1 {
+      text-align: center;
+      color: #ff003c;
+      text-shadow: 0 0 10px red;
+    }
+    form {
+      background: rgba(0, 0, 0, 0.8);
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 0 20px red;
+    }
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+    input[type=number], input[type=text], select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ff003c;
+      background: #111;
+      color: #fff;
+      box-shadow: 0 0 10px red;
+    }
+    button {
+      background: #ff003c;
+      color: white;
+      border: none;
+      padding: 15px;
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-size: 16px;
+      box-shadow: 0 0 15px red;
+    }
+    .neon-ball {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .neon-ball img {
+      width: 100px;
+      filter: drop-shadow(0 0 15px red);
+    }
+    .fut-card {
+      width: 250px;
+      margin: 40px auto;
+      background: linear-gradient(to bottom, #300, #000);
+      border-radius: 20px;
+      text-align: center;
+      padding: 20px 10px;
+      box-shadow: 0 0 15px red;
+      direction: ltr;
+    }
+    .fut-card h2 {
+      font-size: 20px;
+      margin: 5px 0;
+      color: #ff003c;
+    }
+    .fut-rating {
+      font-size: 40px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 10px red;
+    }
+    .fut-labels {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 10px;
+      line-height: 1.5;
+      color: #fff;
+    }
+    .fut-position {
+      font-size: 18px;
+      color: #ff003c;
+    }
+    .fut-stats {
+      margin-top: 20px;
+      text-align: left;
+      font-size: 14px;
+      color: #fff;
+    }
+    .fut-stats div {
+      display: flex;
+      justify-content: space-between;
+      margin: 3px 0;
+    }
+    .player-image {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .play-button {
+      background: #000;
+      color: #ff003c;
+      border: 2px solid red;
+      padding: 10px;
+      border-radius: 8px;
+      font-family: Orbitron;
+      box-shadow: 0 0 10px red;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="site-border">
+    <div class="neon-ball">
+      <img src="https://i.imgur.com/DjQ9dTu.png" alt="توپ نئونی" />
+      <audio id="siuSound" src="https://tiengdong.com/wp-content/uploads/am-thanh-siuuu-www_tiengdong_com.mp3"></audio>
+      <button class="play-button" onclick="document.getElementById('siuSound').play()">🔊 پخش SIUUU!</button>
+    </div>
+
+    <h1>آنالیز سطح فوتبال شما</h1>
+    <form id="footballForm">
+      <label>نام</label>
+      <input type="text" name="firstName" required>
+      <label>نام خانوادگی</label>
+      <input type="text" name="lastName" required>
+      <label>طرفدار کدام بازیکن هستی؟</label>
+      <select name="favorite" required>
+        <option value="ronaldo">کریستیانو رونالدو</option>
+        <option value="messi">لعو مسی</option>
+      </select>
+      <label>چند گل در هر بازی می‌زنی؟</label>
+      <input type="number" name="goal" max="100" min="0" required>
+      <label>چند تا روپایی می‌زنی؟</label>
+      <input type="number" name="keepie" max="100" min="0" required>
+      <label>سرعت؟</label>
+      <input type="number" name="speed" max="100" min="0" required>
+      <label>دفاع؟</label>
+      <input type="number" name="defense" max="100" min="0" required>
+      <label>دریبل؟</label>
+      <input type="number" name="dribble" max="100" min="0" required>
+      <label>قدرت بدنی؟</label>
+      <input type="number" name="strength" max="100" min="0" required>
+      <label>پاس؟</label>
+      <input type="number" name="pass" max="100" min="0" required>
+      <label>شوت؟</label>
+      <input type="number" name="shoot" max="100" min="0" required>
+      <button type="submit">محاسبه کارت</button>
+    </form>
+
+    <div class="fut-card" id="card" style="display:none;">
+      <div class="fut-rating" id="overall"></div>
+      <div class="fut-labels">GOALKEEPER<br>DEFENDER<br>ATTACKER</div>
+      <div class="fut-position" id="position">ST</div>
+      <h2 id="cardName"></h2>
+      <img id="playerImg" class="player-image" src="" alt="player image" style="display:none;" />
+      <div class="fut-stats">
+        <div><span>PAC</span><span id="pac"></span></div>
+        <div><span>SHO</span><span id="sho"></span></div>
+        <div><span>PAS</span><span id="pas"></span></div>
+        <div><span>DRI</span><span id="dri"></span></div>
+        <div><span>DEF</span><span id="def"></span></div>
+        <div><span>PHY</span><span id="phy"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toEnglishName(name) {
+      const map = {'ا':'a','ب':'b','پ':'p','ت':'t','ث':'s','ج':'j','چ':'ch','ح':'h','خ':'kh','د':'d','ذ':'z','ر':'r','ز':'z','ژ':'zh','س':'s','ش':'sh','ص':'s','ض':'z','ط':'t','ظ':'z','ع':'a','غ':'gh','ف':'f','ق':'gh','ک':'k','گ':'g','ل':'l','م':'m','ن':'n','و':'v','ه':'h','ی':'y'};
+      return name.split('').map(ch => map[ch] || ch).join('');
+    }
+
+    document.getElementById('footballForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const d = new FormData(e.target);
+      const fname = d.get('firstName'), lname = d.get('lastName');
+      const fav = d.get('favorite');
+      const fullName = toEnglishName(fname) + ' ' + toEnglishName(lname);
+      const g = parseInt(d.get('goal')), r = parseInt(d.get('keepie')), s = parseInt(d.get('speed')),
+            dfn = parseInt(d.get('defense')), dr = parseInt(d.get('dribble')), str = parseInt(d.get('strength')),
+            p = parseInt(d.get('pass')), sh = parseInt(d.get('shoot'));
+      const overall = Math.round((g + r + s + dfn + dr + str + p + sh)/8);
+      document.getElementById('overall').textContent = overall;
+      document.getElementById('cardName').textContent = fullName.toUpperCase();
+      document.getElementById('pac').textContent = s;
+      document.getElementById('sho').textContent = sh;
+      document.getElementById('pas').textContent = p;
+      document.getElementById('dri').textContent = dr;
+      document.getElementById('def').textContent = dfn;
+      document.getElementById('phy').textContent = str;
+      document.getElementById('playerImg').src = fav === "ronaldo" ? "https://i.imgur.com/1xeZb1N.jpeg" : "https://i.imgur.com/TbshWYX.jpeg";
+      document.getElementById('playerImg').style.display = "block";
+      document.getElementById('card').style.display = "block";
+      const audio = document.getElementById('siuSound');
+      audio.currentTime = 0;
+      audio.play();
+    });
+  </script>
+  <p style="text-align: center; font-size: 14px; color: #888;">
+  طراحی شده توسط خورشید13_آنالیز سطح فوتبال
+</p>
+</body>
+</html>
+</body>
+</html>
